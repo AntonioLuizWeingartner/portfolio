@@ -1,33 +1,24 @@
 const vmanager = require('./views_manager');
+const db = require('./../util/database');
 
-module.exports.render = function(req, res, next) {
-    let url_arr = req.url.split('/');
-    
-    let page_name;
-    let page_title;
+module.exports.render_page = function(req, res, next) {
+    let page_name = req.params.page_name;
+    page_name += '.pug'; 
 
-    if (url_arr.length < 2 ||  url_arr[1] == "") {
-        page_name = 'index.html';
-        page_title = 'Index';
-    } else {
-        page_name = url_arr[1] + '.html';
-        console.log(url_arr[1]);
-        page_title = url_arr[1].charAt(0).toUpperCase() + url_arr[1].slice(1); 
-    }
-
-    results = vmanager.try_get_html_file(page_name, '404.html');
-
-    page_content = results.content;
-
-    if (!results.success) {
-        page_title = 'Não foi possível localizar a página especificada'
-    } 
-
-    let compiled_page = vmanager.get_template('index.pug');
+    let compiled_page = vmanager.try_get_template(page_name, '404.pug').content;
     let rendered_page = compiled_page({
-        page_title : page_title,
-        page_content : page_content
-    })
+        page : req.params.page_name
+    });
+    res.send(rendered_page);
+    res.end();
+}
+
+module.exports.list_projects = async function(req, res, next) {
+    //fetch data from db
+    const cursor = db.get_DB().collection('Projects').find({}, {});
+    
+    const projects = await cursor.toArray();
+    let rendered_page = vmanager.get_template('projects.pug')({projects: projects, page : 'projects'});
     res.send(rendered_page);
     res.end();
 }

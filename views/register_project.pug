@@ -1,0 +1,14 @@
+extends index.pug 
+
+block title
+    title Registrar novo projeto
+
+block content
+    h1 Adicionar Projeto
+    form(action='' method='POST')
+        input(type='text' placeholder='Título' name='title')
+        input(type='text' placeholder='Resumo' name='short_desc')
+        textarea(placeholder='Texto' name='full_desc')
+        input(type='text' placeholder='URL da imagem' name='img_url')
+        input(type='text' placeholder='Link do repositório' name='gitrepo')
+        input(type='submit')

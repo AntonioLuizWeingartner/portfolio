@@ -53,20 +53,28 @@ function get_file(name, object) {
     }
 }
 
+function try_get_file(name, fallback_name, object) {
+    try {
+        return { content : get_file(name, object), success : true};
+    } catch(err) {
+        return { content : get_file(fallback_name, object), success : false};
+    }
+}
+
 function get_html_file(name) {
     return get_file(name, html_files);
 }
 
-function try_get_html_file(name, fallback_name) {
-    try {
-        return { content : get_html_file(name), success : true};
-    } catch(err) {
-        return { content : get_html_file(fallback_name), success : false};
-    }
-}
-
 function get_template(name) {
     return get_file(name, compiled_templates);
+}
+
+function try_get_html_file(name, fallback_name) {
+    return try_get_file(name, fallback_name, html_files);
+}
+
+function try_get_template(name, fallback_name) {
+    return try_get_file(name, fallback_name, compiled_templates);
 }
 
 load_files();
@@ -74,3 +82,4 @@ load_files();
 module.exports.get_html_file = get_html_file;
 module.exports.get_template = get_template;
 module.exports.try_get_html_file = try_get_html_file;
+module.exports.try_get_template = try_get_template;

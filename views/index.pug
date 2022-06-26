@@ -1,8 +1,26 @@
-doctype html
-html(lang="pt-BR")
+html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title #{page_title}
-    body !{page_content}
+        block title 
+            title Inicio
+        block scripts
+        block stylesheets
+            link(rel="stylesheet" type="text/css" href="../css/portfolio.css")
+        block fonts
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet"> 
+    body
+        header(class="main_nav_bar")
+            nav
+                ul
+                    a(href="/portfolio/index" class=page=='index' ? 'active' : '') Inicio
+                    a(href="/portfolio/projects" class=page=='projects' ? 'active' : '') Projetos
+                    a(href="/portfolio/curriculum" class=page=='curriculum' ? 'active' : '') Curriculo
+        block content
+        div(id="content")
+            div(id="profile_image")
+            div(id="intro") Ola, meu nome é Antônio Luiz Weingartner e eu sou um desenvolvedor de software procurando por uma oportunidade para ingressar no mercado. Minha trajetória no mundo da tecnologia se iniciou quando eu tinha 15 anos de idade, época em que eu ainda estava cursando o ensino fundamental. Nesta época eu participei de um curso oferecido pelo SENAI que visava capacitar jovens e adultos para o desenvolvimento de aplicações web de baixa complexidade. Após completar este curso, eu participei do processo seletivo para entrar no curso técnico de eletrônica ofertado pelo IFSC. Lá eu tive a oportunidade de ter contato com as linguagens de programação C e C++. Também tive a oportunidade de desenvolver um jogo e aprimorar minhas habilidades no desenvolvimento de algoritmos. Neste período eu também aprendi o paradigma de orientação a objetos de forma autônoma. Após concluir o curso técnico em eletrônica com êxito, eu ingressei no curso de ciências da computação ofertado pela UFSC visando levar minhas habilidades de programação e solução de problemas para o próximo nível. Nestes 2 anos de curso eu obtive conhecimentos nas áreas de estruturas de dados, programação concorrente, engenharia de software ,algoritmos em grafos, programção funcional e uma maior maturidade matemática que me capacitou para resolver problemas mais abstratos. 
+
+        block footer           

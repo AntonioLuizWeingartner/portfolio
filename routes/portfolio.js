@@ -6,6 +6,7 @@ const portfolio = require('./../controllers/portfolio');
 
 const router = express.Router();
 
-router.use('/', portfolio.render);
+router.get('/projects', portfolio.list_projects);
+router.get('/:page_name', portfolio.render_page);
 
 module.exports = router;

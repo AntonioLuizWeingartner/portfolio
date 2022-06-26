@@ -1,0 +1,13 @@
+extends index.pug
+
+block title 
+    title Projetos
+
+block content
+    each prj in projects
+        div
+            h3=prj.title
+            h3=prj.short_desc
+            h3=prj.full_desc
+            h3=prj.thumb_url
+            h3=prj.git_repo
