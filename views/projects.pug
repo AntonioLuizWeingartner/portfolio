@@ -4,10 +4,12 @@ block title
     title Projetos
 
 block content
-    each prj in projects
-        div
-            h3=prj.title
-            h3=prj.short_desc
-            h3=prj.full_desc
-            h3=prj.thumb_url
-            h3=prj.git_repo
+    div(id="project_listing")
+        each prj in projects
+            div(class="project" style="background-image: url(" + prj.thumb_url +")")
+                a(href="projects/" + prj._id)
+                    div(class="overlay")
+                        div(class="aligner")
+                            span(class="prj_title")=prj.title
+                
+            

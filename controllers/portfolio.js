@@ -1,5 +1,6 @@
 const vmanager = require('./views_manager');
 const db = require('./../util/database');
+const { ObjectId } = require('mongodb');
 
 module.exports.render_page = function(req, res, next) {
     let page_name = req.params.page_name;
@@ -19,6 +20,13 @@ module.exports.list_projects = async function(req, res, next) {
     
     const projects = await cursor.toArray();
     let rendered_page = vmanager.get_template('projects.pug')({projects: projects, page : 'projects'});
+    res.send(rendered_page);
+    res.end();
+}
+
+module.exports.get_project = async function(req, res, next) {
+    const project = await db.get_DB().collection('Projects').findOne({_id : ObjectId(req.params.pid)});
+    let rendered_page = vmanager.get_template('project_details.pug')({prj : project, page : 'projects'});
     res.send(rendered_page);
     res.end();
 }

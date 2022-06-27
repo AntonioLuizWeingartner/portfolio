@@ -1,0 +1,12 @@
+extends index.pug
+
+block title
+    title #{"Projeto " + prj.title}
+
+block content
+    div(id="content")
+        div(class="project_details")
+            span(class="section_title") #{"Projeto " + prj.title}
+            div(class="project_image" style="background: url(" + prj.thumb_url + ")")
+            span(class="section_text") #{prj.full_desc}
+            a(href=prj.git_repo class="pretty_button") Código fonte (GitHub)
