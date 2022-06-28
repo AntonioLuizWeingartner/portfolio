@@ -4,7 +4,7 @@ const mongoClient = mongodb.MongoClient;
 let _db;
 
 const connect_DB = function(on_connect) {
-    mongoClient.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_USER}@cluster0.o6ecxhs.mongodb.net/?retryWrites=true&w=majority`)
+    mongoClient.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.o6ecxhs.mongodb.net/?retryWrites=true&w=majority`)
     .then((client_obj) => {
         console.log("Succesfully connected")
         _db = client_obj.db('Portfolio');
