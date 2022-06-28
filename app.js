@@ -50,5 +50,5 @@ db.connect_DB(() => {
             }
         });
     });
-    app.listen(3000);
+    app.listen(process.env.PORT);
 });
