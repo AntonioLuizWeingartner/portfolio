@@ -14,7 +14,7 @@ const helmet = require('helmet');
 const app = express();
 
 const store = new mongo_store({
-    uri : `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_USER}@cluster0.o6ecxhs.mongodb.net/?retryWrites=true&w=majority`,
+    uri : `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.o6ecxhs.mongodb.net/?retryWrites=true&w=majority`,
     collection : 'sessions',
     databaseName: 'Portfolio'
 });
