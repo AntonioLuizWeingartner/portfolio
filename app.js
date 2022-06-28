@@ -9,7 +9,7 @@ const body_parser = require('body-parser');
 const session = require('express-session');
 const mongo_store = require('connect-mongodb-session')(session);
 const bcrypt = require('bcrypt');
-const helmet = require('helmet');
+//const helmet = require('helmet');
 
 const app = express();
 
