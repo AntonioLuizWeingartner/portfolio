@@ -9,11 +9,12 @@ const body_parser = require('body-parser');
 const session = require('express-session');
 const mongo_store = require('connect-mongodb-session')(session);
 const bcrypt = require('bcrypt');
+const helmet = require('helmet');
 
 const app = express();
 
 const store = new mongo_store({
-    uri : "mongodb+srv://antonio:root@cluster0.o6ecxhs.mongodb.net/?retryWrites=true&w=majority",
+    uri : `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_USER}@cluster0.o6ecxhs.mongodb.net/?retryWrites=true&w=majority`,
     collection : 'sessions',
     databaseName: 'Portfolio'
 });
@@ -22,6 +23,7 @@ store.on('error', (err) => {
     console.error(err);
 });
 
+app.use(helmet())
 app.use(session({secret: 'asdoaseqw', resave: false, saveUninitialized: false, store: store})); //session middleware
 app.use(body_parser.urlencoded({extended:true})); //middleware to parse the request body
 app.use(express.static(path.join(__dirname, 'public'))); //middleware to serve public files
