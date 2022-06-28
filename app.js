@@ -23,7 +23,7 @@ store.on('error', (err) => {
     console.error(err);
 });
 
-app.use(helmet())
+//app.use(helmet())
 app.use(session({secret: 'asdoaseqw', resave: false, saveUninitialized: false, store: store})); //session middleware
 app.use(body_parser.urlencoded({extended:true})); //middleware to parse the request body
 app.use(express.static(path.join(__dirname, 'public'))); //middleware to serve public files
